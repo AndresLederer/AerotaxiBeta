@@ -1214,13 +1214,15 @@ public class userInterface extends JFrame implements WindowListener{
 		pasajesReservados.setForeground(Color.white);
 		
 		
-		mensajeCancelacionConfirmada = new JLabel("Se ha cancelado la reserva");
+		mensajeCancelacionConfirmada = new JLabel("Se ha cancelado la reserva*");
+		mensajeCancelacionConfirmada.setBounds(475,407,300,17); //(485,427,134,51);
 		mensajeCancelacionConfirmada.setFont(fuenteMensajeDelSistema);
 		mensajeCancelacionConfirmada.setForeground(Color.green);
 		mensajeCancelacionConfirmada.setVisible(false);
 		
 		cancelacionPanel.add(pasajesReservados);
 		cancelacionPanel.add(dniUsuarioCancelacion);
+		cancelacionPanel.add(mensajeCancelacionConfirmada);
 	}
 	
 	private void cargarCancelacionTextField() {
@@ -1230,6 +1232,7 @@ public class userInterface extends JFrame implements WindowListener{
 		
 		cancelacionPanel.add(dniUsuarioCancelacion);
 		
+		//agrego focus listener al campo del dni
 		FocusListener focusDniUsuarioCancelacion = new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -1238,13 +1241,29 @@ public class userInterface extends JFrame implements WindowListener{
 			@Override
 			public void focusGained(FocusEvent e) {
 				dniUsuarioCancelacion.setText("");
-				mensajeCancelacionConfirmada.setVisible(false);
 				pasajesReservadosComboBox.removeAllItems();
 				pasajesReservadosComboBox.setEnabled(false);
 				btnConfirmarCancelacion.setEnabled(false);
 			}
 		};
 		dniUsuarioCancelacion.addFocusListener(focusDniUsuarioCancelacion);
+		
+		//agrego key listener al campo del dni
+		KeyListener dniUsuarioKeyListener = new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				mensajeCancelacionConfirmada.setVisible(false);
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+			}
+		};
+		dniUsuarioCancelacion.addKeyListener(dniUsuarioKeyListener);
 	}
 	
 	private void cargarCancelacionBotones() {
