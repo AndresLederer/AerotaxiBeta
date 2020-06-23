@@ -2,7 +2,9 @@ package aerotaxiPackage;
 
 public enum Propulsion {
 	//tipos de propulsion (constantes)
-	REACCION("Motor a reacción"),
+//	"REACCION","HELICE","PISTONES"; 
+	
+	REACCION ("Motor a reacción"),
 	HELICE("Motor a hélice"),
 	PISTONES("Motor de pistones");
 	
